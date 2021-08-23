@@ -1,22 +1,38 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./src/screens/Home";
+import Login from "./src/screens/Login";
+import FlexboxScreen from "./src/screens/FlexboxScreen";
+import FlatlistScreen from "./src/screens/FlatlistScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>HELLO WORLD</Text>
-      <Text>Сайн байна уу !</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Нүүр" }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ title: "Нэвтрэх" }}
+        />
+        <Stack.Screen
+          name="Flexbox"
+          component={FlexboxScreen}
+          options={{ title: "Flexbox" }}
+        />
+        <Stack.Screen
+          name="Flatlist"
+          component={FlatlistScreen}
+          options={{ title: "Flatlist" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#c6c6c6",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
